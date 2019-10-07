@@ -27,7 +27,7 @@ gedit packages/sick_lidar_2d/apps/tim571_sample.app.json
 ```json
 "isaac.sick_lidar_2d.TiM5xxFamily": {
   "model": "TiM571",
-  "ip": "192.168.100.235",
+  "ip": "192.168.0.1",
   "start_angle": "-450000",
   "stop_angle": "2250000"
 },
