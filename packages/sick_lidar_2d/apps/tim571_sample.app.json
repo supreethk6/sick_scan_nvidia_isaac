@@ -1,0 +1,116 @@
+{
+  "name": "tim571_sample",
+  "modules": [
+    "sick_lidar_2d",
+    "@com_nvidia_isaac//packages/perception",
+    "@com_nvidia_isaac//packages/viewers"
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "name": "tim571",
+        "components": [
+          {
+            "name": "lidar_initializer",
+            "type": "isaac::alice::PoseInitializer"
+          },
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "isaac.sick_lidar_2d.TiM571",
+            "type": "isaac::sick_lidar_2d::TiM5xxFamily"
+          }
+        ]
+      },
+      {
+        "name": "point_cloud",
+        "components": [
+          {
+            "name": "ml",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "isaac.perception.RangeToPointCloud",
+            "type": "isaac::perception::RangeToPointCloud",
+            "min_count": 1
+          }
+        ]
+      },
+      {
+        "name": "viewer",
+        "components": [
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "isaac.viewers.PointCloudViewer",
+            "type": "isaac::viewers::PointCloudViewer"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "tim571/isaac.sick_lidar_2d.TiM571/scan",
+        "target": "point_cloud/isaac.perception.RangeToPointCloud/scan"
+      },
+      {
+        "source": "point_cloud/isaac.perception.RangeToPointCloud/cloud",
+        "target": "viewer/isaac.viewers.PointCloudViewer/cloud"
+      }
+    ]
+  },
+  "config": {
+    "tim571": {
+      "isaac.sick_lidar_2d.TiM5xxFamily": {
+        "model": "TiM571",
+        "ip": "192.168.100.235",
+        "start_angle": "-450000",
+        "stop_angle": "2250000"
+      },
+      "lidar_initializer": {
+        "lhs_frame": "ground",
+        "rhs_frame": "lidar",
+        "pose": [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      }
+    },
+    "viewer": {
+      "message_ledger": {
+        "history": 10
+      },
+      "isaac.viewers.PointCloudViewer": {
+        "max_distance": 30,
+        "frame": "ground"
+      }
+    },
+    "websight": {
+      "WebsightServer": {
+        "webroot": "external/com_nvidia_isaac/packages/sight/webroot",
+        "assetroot": "../isaac_assets",
+        "port": 3000,
+        "ui_config": {
+          "windows": {
+            "SICK AG TiM571 Scan - 3D View": {
+              "channels": [
+                {
+                  "name": "tim571_sample/viewer/isaac.viewers.PointCloudViewer/points",
+                  "active": true
+                }
+              ],
+              "dims": {
+                "height": 1200,
+                "width": 800
+              },
+              "renderer": "3d"
+            }
+          },
+          "assets": {
+          }
+        }
+      }
+    }
+  }
+}

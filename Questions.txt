@@ -1,0 +1,25 @@
+
+1) Scan Points are displayed in black by PointCloudViewer. 
+PointCloudProto has a member called colors, but how can I configure 
+that if I can't assure that each scan has exactly the same number 
+of points? In addition to that, output range can be configured. 
+Thus, doing it in app.json seems impractical to me. Can I access
+the point cloud after it has been converted from scan?
+Could I bind color to intensity?
+
+N.b. struct PointCloudProto {
+  # The positions of the ->> poinst <<--
+
+2. Can I move the camera within PointCloudViewer? Measure? 
+
+3. Isn't there a better way to set up the path to Isaac SDK?
+
+4. A 2D range scan which is essentially a flat version of the 3D RangeScanProto
+struct FlatscanProto {
+ a)   ->> FlatScanProto <<-
+
+ b) no not really, and why isn't it? (I miss struct Ray or at least an intensity list)
+
+5. In case the connection is lost - shall the driver try to reconnect and transmit Dist=Invalid once
+or reportFailure and let the framework / user handle? I think the driver should provide both options
+but is there a preference?
