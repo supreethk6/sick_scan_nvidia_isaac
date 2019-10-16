@@ -33,7 +33,7 @@ isaac_cc_library(
         "@com_nvidia_isaac//messages",
     ],
     copts = [
-		"-Iexternal/com_sickag_ssbl/src/Components",
+		"-Iexternal/com_sickag_ssbl/Components",
 		"-Iexternal/com_sickag_ssbl/include",
     ],
 )

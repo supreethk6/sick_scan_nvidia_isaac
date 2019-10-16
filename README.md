@@ -8,7 +8,7 @@ To get started:
 1. Download and install [NVIDIA Isaac SDK](https://developer.nvidia.com/isaac-sdk)
 2. Clone this repository
 ```bash
-git clone https://github.com/kaidoho/sick_scan_nvidia_isaac.git
+git clone https://github.com/SickScan/sick_scan_nvidia_isaac.git
 ```
 3. Adjust the path to NVIDIA Isaac SDK. Open the file WORKSPACE and change "/home/blofeld/Downloads/isaac_sdk/isaac_nightly_20190528" to your needs.
 ```bash
