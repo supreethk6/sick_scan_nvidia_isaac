@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_cc_library", "isaac_cc_module", "isaac_component")
+load("@com_nvidia_isaac_engine//bzl:isaac_engine.bzl", "isaac_cc_library")
+load("@com_nvidia_isaac_sdk//bzl:module.bzl", "isaac_cc_module", "isaac_component")
 
 isaac_cc_module(
     name = "sick_lidar_2d",

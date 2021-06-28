@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_cc_library", "isaac_cc_module", "isaac_component")
+load("@com_nvidia_isaac_engine//bzl:isaac_engine.bzl", "isaac_cc_library")
+load("@com_nvidia_isaac_sdk//bzl:module.bzl", "isaac_cc_module", "isaac_component")
 
 isaac_cc_library(
     name = "sick_lidar_2d",
@@ -28,9 +29,9 @@ isaac_cc_library(
     ],
     deps = [
         "@com_sickag_ssbl//:ssbl",
-        "@com_nvidia_isaac//engine/alice",
-        "@com_nvidia_isaac//engine/core",
-        "@com_nvidia_isaac//messages",
+        "@com_nvidia_isaac_engine//engine/alice",
+        "@com_nvidia_isaac_engine//engine/core",
+        "@com_nvidia_isaac_sdk//messages",
     ],
     copts = [
 		"-Iexternal/com_sickag_ssbl/Components",

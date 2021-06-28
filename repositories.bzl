@@ -13,8 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_http_archive", "isaac_new_http_archive", "isaac_new_local_repository")
+load("@com_nvidia_isaac_engine//bzl:deps.bzl", "isaac_http_archive")
 
 def clean_dep(dep):
     return str(Label(dep))

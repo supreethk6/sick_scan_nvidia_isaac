@@ -21,7 +21,7 @@
 #include "engine/alice/alice_codelet.hpp"
 #include "engine/core/byte.hpp"
 #include "engine/core/optional.hpp"
-#include "messages/messages.hpp"
+#include "messages/range_scan.capnp.h"
 
 
 //Forward declare

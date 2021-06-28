@@ -22,6 +22,7 @@
 #include "engine/core/assert.hpp"
 #include "engine/core/constants.hpp"
 #include "engine/core/logger.hpp"
+#include "messages/tensor.hpp"
 #include "SSBL.h"
 
 
@@ -93,22 +94,29 @@ void TiM5xxFamily::scanProcessor(uint64_t * pScan)
   //2D Scan - only 1 Phi
   range_scan_proto.initPhi(1);
   range_scan_proto.getPhi().set(0, 0);
+ 
+
+
 
   //number of beams may vary +/-1 from scan to scan
   uint32_t n_rays = pVar->Value_.aDataChannel16[0].uiLengthaData;
-
+  Tensor2ui16 ranges(n_rays, 1);
+  Tensor2ub intensities(n_rays, 1);
   auto thetas_proto = range_scan_proto.initTheta(n_rays);
-  auto rays_proto = range_scan_proto.initRays(n_rays);
-
+ 
   for (uint32_t i = 0; i < n_rays; i++) {
     thetas_proto.set(i, DegToRad(
       static_cast<double>(pVar->Value_.aDataChannel16[0].DataChannelHdr.diStartAngle +
       i*pVar->Value_.aDataChannel16[0].DataChannelHdr.uiAngleRes)/10000
     ));
-    rays_proto[i].setRange(pVar->Value_.aDataChannel16[0].aData[i]);
-    rays_proto[i].setIntensity(pVar->Value_.aDataChannel8[0].aData[i]);
+    ranges(i, 0) = pVar->Value_.aDataChannel16[0].aData[i];
+    intensities(i, 0) = pVar->Value_.aDataChannel8[0].aData[i];
   }
-  
+
+  ToProto(std::move(ranges), range_scan_proto.initRanges(), tx_scan().buffers());
+  ToProto(std::move(intensities), range_scan_proto.initIntensities(), tx_scan().buffers());  
+
+
   tx_scan().publish();
 
 }

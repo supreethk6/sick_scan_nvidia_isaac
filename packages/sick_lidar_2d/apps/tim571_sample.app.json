@@ -2,8 +2,9 @@
   "name": "tim571_sample",
   "modules": [
     "sick_lidar_2d",
-    "@com_nvidia_isaac//packages/perception",
-    "@com_nvidia_isaac//packages/viewers"
+    "@com_nvidia_isaac_sdk//packages/perception",
+    "@com_nvidia_isaac_sdk//packages/sight",
+    "@com_nvidia_isaac_sdk//packages/viewers"
   ],
   "graph": {
     "nodes": [
