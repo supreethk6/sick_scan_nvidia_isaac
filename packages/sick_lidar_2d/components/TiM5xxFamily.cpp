@@ -37,9 +37,8 @@ namespace sick_lidar_2d {
 
 void TiM5xxFamily::start() {
  
-  pLidar = CreateSickLidar2d(get_model(), get_ip());
+  pLidar = new  Lidar2d(get_model(), get_ip(), "1.0.0");
 
-  
   if(SSBL_SUCCESS == pLidar->Initialize(
     get_start_angle(), get_stop_angle(), std::bind(&TiM5xxFamily::scanProcessor, this, std::placeholders::_1))) {
 
@@ -82,7 +81,7 @@ void TiM5xxFamily::scanProcessor(uint64_t * pScan)
 {
   auto range_scan_proto = tx_scan().initProto();
 
-  auto *pVar = reinterpret_cast<ssbl::DevTiM5xxSkeleton::ScanData_TiM5xxSkeleton_Var *>(pScan);
+  auto *pVar = reinterpret_cast<ssbl::TiM5x1_V3_17_17_09_19_Skeleton::ScanData_TiM5x1_Var *>(pScan);
 
   const float scaleFactor = (65535.0 * (float)pVar->Value_.aDataChannel16[0].DataChannelHdr.dScaleFactor) /1000.0;
   range_scan_proto.setRangeDenormalizer(scaleFactor); 

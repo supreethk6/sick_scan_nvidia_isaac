@@ -29,10 +29,10 @@ def sick_sensor_workspace():
 
     isaac_http_archive(
         name = "com_sickag_ssbl",
-        sha256 = "38d3982a130349b5983b93046bab9522d3bb7a551ee82116118d0d2c1605119f",
-   	    strip_prefix = "sick_scan_base-0.0.2/src",
-        urls = ["https://github.com/SickScan/sick_scan_base/archive/V0.0.2.tar.gz"],
-	    build_file = "@//:ssbl.BUILD",
+        sha256 = "9ff974a81ddf49c22612e56c4f211f1dd6771f6f9e461c9b8e81603a7e2145e7",
+   	strip_prefix = "sick_scan_base-0.0.3/src/Library",
+        urls = ["https://github.com/SickScan/sick_scan_base/archive/V0.0.3.tar.gz"],
+	build_file = "@//:ssbl.BUILD",
         licenses = ["@com_sickag_ssbl//:COPYRIGHT"],
     )
 

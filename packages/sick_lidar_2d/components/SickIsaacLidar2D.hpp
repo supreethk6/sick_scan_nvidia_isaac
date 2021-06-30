@@ -26,7 +26,7 @@
 
 //Forward declare
 namespace ssbl {
-  class SickLidar2d;
+  class Lidar2d;
 }
 
 namespace isaac {
@@ -64,7 +64,7 @@ class TiM5xxFamily : public alice::Codelet {
   void scanProcessor(uint64_t * pScan);
 
 
-  ssbl::SickLidar2d * pLidar;
+  ssbl::Lidar2d * pLidar;
 };
 
 }  // namespace sick_lidar_2d
