@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-load("@com_nvidia_isaac_sdk//bzl:module.bzl", "isaac_app", "isaac_cc_module")
+load("@com_nvidia_isaac_sdk//bzl:module.bzl", "isaac_app")
 
 isaac_app(
     name = "tim5xx_sample",

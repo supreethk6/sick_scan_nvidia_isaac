@@ -15,11 +15,12 @@ limitations under the License.
 """
 
 load("@com_nvidia_isaac_engine//bzl:isaac_engine.bzl", "isaac_cc_library")
-load("@com_nvidia_isaac_sdk//bzl:module.bzl", "isaac_cc_module", "isaac_component")
+
 
 isaac_cc_library(
-    name = "sick_lidar_2d",
+    name = "TiM5xxFamily",
     visibility = ["//visibility:public"],
+    alwayslink = 1,
     srcs = [
         "TiM5xxFamily.cpp",
         "SSBL_Wrapper.cpp"
