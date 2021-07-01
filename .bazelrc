@@ -24,6 +24,9 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+startup --host_jvm_args=-Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts \
+        --host_jvm_args=-Djavax.net.ssl.trustStorePassword=changeit
+
 build --keep_going --color=yes -c opt --crosstool_top=@toolchain//crosstool:toolchain
 
 build --define=target_platform=x86_64 --strip=always
