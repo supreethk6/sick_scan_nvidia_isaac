@@ -5,12 +5,14 @@
 
 To get started:
 
-1. Download and install [NVIDIA Isaac SDK](https://developer.nvidia.com/isaac-sdk)
+1. Download and install [NVIDIA Isaac SDK](https://developer.nvidia.com/isaac-sdk). 
+Note that the docs are misleading. You'll find the script to install the dependencies under engine/engine/build/scripts.
+
 2. Clone this repository
 ```bash
 git clone https://github.com/SickScan/sick_scan_nvidia_isaac.git
 ```
-3. Adjust the path to NVIDIA Isaac SDK. Open the file WORKSPACE and change "/home/blofeld/Downloads/isaac_sdk/isaac_nightly_20190528" to your needs.
+3. Adjust the path to NVIDIA Isaac SDK. Open the file WORKSPACE and change "YOUR_SDK_PATH_HERE" to your needs.
 ```bash
 cd sick_scan_nvidia_isaac
 gedit WORKSPACE
@@ -37,5 +39,7 @@ gedit packages/sick_lidar_2d/apps/tim571_sample.app.json
 ```bash
 bazel run packages/sick_lidar_2d/apps/tim5xx_sample
 ```
+
+If you receive error messages complaining about missing "libperception" you have either not installed CUDA, or the wrong version. The repo is known to work with CUDA 10.2.
 
 7. Open up a browser and connect to <b> http://127.0.0.1:3000 </b>
