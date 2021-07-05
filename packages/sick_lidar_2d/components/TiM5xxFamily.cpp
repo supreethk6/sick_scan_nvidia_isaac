@@ -37,7 +37,7 @@ namespace sick_lidar_2d {
 
 void TiM5xxFamily::start() {
  
-  pLidar = new  Lidar2d(get_model(), get_ip(), "1.0.0");
+  pLidar = new  Lidar2d(get_model(), get_ip(), "V3_17-17_09_19");
 
   if(SSBL_SUCCESS == pLidar->Initialize(
     get_start_angle(), get_stop_angle(), std::bind(&TiM5xxFamily::scanProcessor, this, std::placeholders::_1))) {
