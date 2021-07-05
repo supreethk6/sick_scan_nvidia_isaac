@@ -29,7 +29,7 @@ def sick_sensor_workspace():
 
     isaac_http_archive(
         name = "com_sickag_ssbl",
-        sha256 = "00a5e4e3ab62a254365a93c2538dbfbf3cac84614cd960aa8394b90e4476d027",
+        sha256 = "922f330c604fb0af97c0e0c488f6e60a0e70b742a4bc171393cc520625208a43",
    	strip_prefix = "sick_scan_base-0.0.3/src/Library",
         urls = ["https://github.com/SickScan/sick_scan_base/archive/V0.0.3.tar.gz"],
 	build_file = "@//:ssbl.BUILD",
