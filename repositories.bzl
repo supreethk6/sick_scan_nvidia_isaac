@@ -13,8 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-
-load("@com_nvidia_isaac//engine/build:isaac.bzl", "isaac_http_archive", "isaac_new_http_archive", "isaac_new_local_repository")
+load("@com_nvidia_isaac_engine//bzl:deps.bzl", "isaac_http_archive")
 
 def clean_dep(dep):
     return str(Label(dep))
@@ -30,10 +29,10 @@ def sick_sensor_workspace():
 
     isaac_http_archive(
         name = "com_sickag_ssbl",
-        sha256 = "38d3982a130349b5983b93046bab9522d3bb7a551ee82116118d0d2c1605119f",
-   	    strip_prefix = "sick_scan_base-0.0.2/src",
-        urls = ["https://github.com/SickScan/sick_scan_base/archive/V0.0.2.tar.gz"],
-	    build_file = "@//:ssbl.BUILD",
+        sha256 = "9fd9a59f3c211d044d2ef83362dc7d18bfc632ebc89dd31e32d83d1fedcec556",
+   	strip_prefix = "sick_scan_base-0.0.3/src/Library",
+        urls = ["https://github.com/SickScan/sick_scan_base/archive/V0.0.3.tar.gz"],
+	build_file = "@//:ssbl.BUILD",
         licenses = ["@com_sickag_ssbl//:COPYRIGHT"],
     )
 

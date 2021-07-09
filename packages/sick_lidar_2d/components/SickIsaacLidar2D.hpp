@@ -21,12 +21,12 @@
 #include "engine/alice/alice_codelet.hpp"
 #include "engine/core/byte.hpp"
 #include "engine/core/optional.hpp"
-#include "messages/messages.hpp"
+#include "messages/range_scan.capnp.h"
 
 
 //Forward declare
 namespace ssbl {
-  class SickLidar2d;
+  class Lidar2d;
 }
 
 namespace isaac {
@@ -64,7 +64,7 @@ class TiM5xxFamily : public alice::Codelet {
   void scanProcessor(uint64_t * pScan);
 
 
-  ssbl::SickLidar2d * pLidar;
+  ssbl::Lidar2d * pLidar;
 };
 
 }  // namespace sick_lidar_2d

@@ -22,6 +22,7 @@
 #include "engine/core/assert.hpp"
 #include "engine/core/constants.hpp"
 #include "engine/core/logger.hpp"
+#include "messages/tensor.hpp"
 #include "SSBL.h"
 
 
@@ -36,9 +37,8 @@ namespace sick_lidar_2d {
 
 void TiM5xxFamily::start() {
  
-  pLidar = CreateSickLidar2d(get_model(), get_ip());
+  pLidar = new  Lidar2d(get_model(), get_ip(), "V3_17-17_09_19");
 
-  
   if(SSBL_SUCCESS == pLidar->Initialize(
     get_start_angle(), get_stop_angle(), std::bind(&TiM5xxFamily::scanProcessor, this, std::placeholders::_1))) {
 
@@ -81,7 +81,7 @@ void TiM5xxFamily::scanProcessor(uint64_t * pScan)
 {
   auto range_scan_proto = tx_scan().initProto();
 
-  auto *pVar = reinterpret_cast<ssbl::DevTiM5xxSkeleton::ScanData_TiM5xxSkeleton_Var *>(pScan);
+  auto *pVar = reinterpret_cast<ssbl::TiM5x1_V3_17_17_09_19_Skeleton::ScanData_TiM5x1_Var *>(pScan);
 
   const float scaleFactor = (65535.0 * (float)pVar->Value_.aDataChannel16[0].DataChannelHdr.dScaleFactor) /1000.0;
   range_scan_proto.setRangeDenormalizer(scaleFactor); 
@@ -93,22 +93,29 @@ void TiM5xxFamily::scanProcessor(uint64_t * pScan)
   //2D Scan - only 1 Phi
   range_scan_proto.initPhi(1);
   range_scan_proto.getPhi().set(0, 0);
+ 
+
+
 
   //number of beams may vary +/-1 from scan to scan
   uint32_t n_rays = pVar->Value_.aDataChannel16[0].uiLengthaData;
-
+  Tensor2ui16 ranges(n_rays, 1);
+  Tensor2ub intensities(n_rays, 1);
   auto thetas_proto = range_scan_proto.initTheta(n_rays);
-  auto rays_proto = range_scan_proto.initRays(n_rays);
-
+ 
   for (uint32_t i = 0; i < n_rays; i++) {
     thetas_proto.set(i, DegToRad(
       static_cast<double>(pVar->Value_.aDataChannel16[0].DataChannelHdr.diStartAngle +
       i*pVar->Value_.aDataChannel16[0].DataChannelHdr.uiAngleRes)/10000
     ));
-    rays_proto[i].setRange(pVar->Value_.aDataChannel16[0].aData[i]);
-    rays_proto[i].setIntensity(pVar->Value_.aDataChannel8[0].aData[i]);
+    ranges(i, 0) = pVar->Value_.aDataChannel16[0].aData[i];
+    intensities(i, 0) = pVar->Value_.aDataChannel8[0].aData[i];
   }
-  
+
+  ToProto(std::move(ranges), range_scan_proto.initRanges(), tx_scan().buffers());
+  ToProto(std::move(intensities), range_scan_proto.initIntensities(), tx_scan().buffers());  
+
+
   tx_scan().publish();
 
 }

@@ -2,8 +2,9 @@
   "name": "tim571_sample",
   "modules": [
     "sick_lidar_2d",
-    "@com_nvidia_isaac//packages/perception",
-    "@com_nvidia_isaac//packages/viewers"
+    "@com_nvidia_isaac_sdk//packages/perception",
+    "@com_nvidia_isaac_sdk//packages/sight",
+    "@com_nvidia_isaac_sdk//packages/viewers"
   ],
   "graph": {
     "nodes": [
@@ -19,7 +20,7 @@
             "type": "isaac::alice::MessageLedger"
           },
           {
-            "name": "isaac.sick_lidar_2d.TiM571",
+            "name": "isaac.sick_lidar_2d.TiM5xxFamily",
             "type": "isaac::sick_lidar_2d::TiM5xxFamily"
           }
         ]
@@ -54,7 +55,7 @@
     ],
     "edges": [
       {
-        "source": "tim571/isaac.sick_lidar_2d.TiM571/scan",
+        "source": "tim571/isaac.sick_lidar_2d.TiM5xxFamily/scan",
         "target": "point_cloud/isaac.perception.RangeToPointCloud/scan"
       },
       {
@@ -88,7 +89,7 @@
     },
     "websight": {
       "WebsightServer": {
-        "webroot": "external/com_nvidia_isaac/packages/sight/webroot",
+        "webroot": "external/com_nvidia_isaac_sdk/packages/sight/webroot",
         "assetroot": "../isaac_assets",
         "port": 3000,
         "ui_config": {
