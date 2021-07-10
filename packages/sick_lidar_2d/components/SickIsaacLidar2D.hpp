@@ -47,10 +47,10 @@ class TiM5xxFamily : public alice::Codelet {
   ISAAC_PROTO_TX(RangeScanProto, scan);
 
   // The IP address of the Lidar device
-  ISAAC_PARAM(std::string, ip, "192.168.100.235");
+  ISAAC_PARAM(std::string, ip, "192.168.1.26");
 
   // The model name of the Lidar 
-  ISAAC_PARAM(std::string, model, "TiM571");
+  ISAAC_PARAM(std::string, model, "TiM551");
 
 
   // Start Angle [1/10000°]

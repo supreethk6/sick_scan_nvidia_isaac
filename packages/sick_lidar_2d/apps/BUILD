@@ -17,6 +17,17 @@ limitations under the License.
 load("@com_nvidia_isaac_sdk//bzl:module.bzl", "isaac_app")
 
 isaac_app(
+    name = "tim551_app",
+    app_json_file = "tim551_sample.app.json",
+    modules = [
+        "sick_lidar_2d",
+        "@com_nvidia_isaac_sdk//packages/perception",
+        "@com_nvidia_isaac_sdk//packages/sight",
+        "@com_nvidia_isaac_sdk//packages/viewers",
+    ],
+)
+
+isaac_app(
     name = "tim5xx_sample",
     app_json_file = "tim571_sample.app.json",
     modules = [
@@ -25,5 +36,4 @@ isaac_app(
         "@com_nvidia_isaac_sdk//packages/sight",
         "@com_nvidia_isaac_sdk//packages/viewers",
     ],
-
 )

@@ -20,11 +20,11 @@ workspace(name = "sick_sensor")
 
 local_repository(
     name = "com_nvidia_isaac_engine",
-    path = "/home/moessma/Downloads/isaac-sdk-20201201-427971df2/engine",
+    path = "/home/ki-ml-2/skk_workspace/isaac-sdk-2020/engine",
 )
 local_repository(
     name = "com_nvidia_isaac_sdk",
-    path = "/home/moessma/Downloads/isaac-sdk-20201201-427971df2/sdk",
+    path = "/home/ki-ml-2/skk_workspace/isaac-sdk-2020/sdk",
 )
 
 load("@com_nvidia_isaac_engine//third_party:engine.bzl", "isaac_engine_workspace")

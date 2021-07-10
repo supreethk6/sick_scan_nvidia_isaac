@@ -1,0 +1,8 @@
+build
+install
+src/CID-Tools
+src/Library/include/VersionInfo.h
+src/.vscode
+backlog/doc/~$coordinate_definition.pptx
+scripts/Modules
+scripts/ssbl.BUILD
