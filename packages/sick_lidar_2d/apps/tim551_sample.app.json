@@ -68,7 +68,7 @@
     "tim551": {
       "isaac.sick_lidar_2d.TiM5xxFamily": {
         "model": "TiM551",
-        "ip": "192.168.1.26",
+        "ip": "192.168.0.1",
         "start_angle": "-450000",
         "stop_angle": "2250000"
       },

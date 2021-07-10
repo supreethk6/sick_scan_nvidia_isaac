@@ -35,8 +35,7 @@ int main(void) {
   // Step 1) Create a Lidar
   //===============================================================================
 
-  // Lidar2d DUT("TiM571", "192.168.0.1", "V3_17-17_09_19");
-  Lidar2d DUT("TiM551", "192.168.1.26", "V3_17-17_09_19");
+  Lidar2d DUT("TiM571", "192.168.0.1", "V3_17-17_09_19");
   bool timeout;
   // cout << DUT.GetCapabilities() << endl;
 
